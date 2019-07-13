@@ -1,0 +1,217 @@
+{% extends 'ANTblog/base.html' %}
+{% load static %}
+{% load sass_tags %}
+{% load antblog %}
+
+{% block title %}
+    详情
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% sass_src 'ANTblog/css/detail.sass' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'highlight/css/dark.css' %}" type="text/css">
+{% endblock %}
+
+{% block body %}
+    {% include 'ANTblog/header.html' %}
+    <div class="content">
+        <div class="left">
+            <div class="detail">
+                <div class="detail-header">
+                    <a href="/">
+                        <span>
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <span> > </span>
+                    {% for url in detail_menu %}
+                        <a href="{{ url }}">
+                            <span>
+                                {% if forloop.first %}
+                                    <i class="fa fa-tablet" aria-hidden="true"></i>
+                                {% else %}
+                                    <i class="fa fa-tag" aria-hidden="true"></i>
+                                {% endif %}
+                            </span>
+                            <span> > </span>
+                        </a>
+                    {% endfor %}
+
+                    <span style="color: #34c77e;">
+                       <i class="fa fa-building" aria-hidden="true"></i>
+                    </span>
+
+                </div>
+                <div class="detail-title">
+                    <div class="title">
+                        {{ article.title }}
+                    </div>
+                    <div class="author">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i> {{ article.author }}
+                    </div>
+                    <div class="datetime">
+                        <i class="fa fa-calendar" aria-hidden="true"></i> {{ article.push_datetime|date:"Y-m-d H:i:s" }}
+                    </div>
+                    <div class="look">
+                        <i class="fa fa-eye" aria-hidden="true"></i> {{ article.look_num }}
+                    </div>
+                    <div class="comment">
+                        <i class="fa fa-commenting" aria-hidden="true"></i> {{ article.comment_num }}
+                    </div>
+                    <div class="like">
+                        <i class="fa fa-heart" aria-hidden="true"></i> <span>{{ article.like_num }}</span>
+                    </div>
+
+                </div>
+                <div class="detail-content" id="content" style="display: none">{{ article.content }}</div>
+                <div class="detail-content" id="result"></div>
+                <div class="detail-footer">
+                    <span>喜欢({{ article.like_num }})</span>
+                </div>
+            </div>
+
+            <div class="people-comment">
+                <div class="post-comment">
+                    <div class="image">
+                        <img src="{% static 'ANTblog/images/timg.jpg' %}" alt="">
+                    </div>
+                    <span>发表我的评论</span>
+
+                </div>
+                <form action="" method="post" id="reply-root-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="article_id" value="{{ article.id }}">
+                    <div class="post-detail">
+                        <textarea name="content" placeholder="在这里输入你的评论哦"></textarea>
+                    </div>
+                    <div class="push-button">
+                        <span>提交评论</span>
+                    </div>
+                </form>
+                <div class="comment-desc">
+                    正在吐槽
+                </div>
+
+                {% antcomment reply %}
+
+                <!--<div class="comment-page">
+                    <div class="pre-page">
+                        <<
+                    </div>
+                    <ul>
+                        <li class="active">1</li>
+                        <li>2</li>
+                    </ul>
+                    <div class="next-page">
+                        >>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div class="right">
+            {% include 'ANTblog/right.html' %}
+        </div>
+    </div>
+
+
+    {% include 'ANTblog/footer.html' %}
+    {% include 'ANTblog/rocket.html' %}
+    <script src="{% static 'showdown/js/showdown.min.js' %}"></script>
+    <script src="{% static 'highlight/js/highlight.pack.js' %}"></script>
+
+    <script type="text/javascript">
+        function compile() {
+            var text = document.getElementById("content").innerHTML
+            var converter = new showdown.Converter()
+            var html = converter.makeHtml(text)
+            document.getElementById("result").innerHTML = html
+        }
+
+        function addDetailEvent() {
+            $('.detail-footer>span').on('click', function () {
+                $.get("{% url 'add_like_num' %}?id={{ article.id }}", function () {
+                    var s = $('.detail-footer>span').html()
+                    var array = s.split(/[()]/)
+                    $('.detail-footer>span').html(
+                        `${array[0]}(${+array[1] + 1})`
+                    )
+
+                    $('.like>span').html(+$('.like>span').html() + 1)
+                })
+            })
+
+            $('.push-button>span').on('click', function () {
+                var val = $('.post-detail>textarea').val()
+                if (!val.trim()) {
+                    alert("评论不能为空")
+                    return false
+                }
+                $("#reply-root-form").submit()
+            })
+
+            $('.child-reply>span').on('click', function () {
+                $(this).parent().parent().children(".child-reply-content").children("div").css("display", "block")
+                {#console.log($(this).parent().parent().children(".child-reply-content")[0])#}
+            })
+
+            $('.child-reply-content>div>span').on('click', function () {
+                var form = new FormData($('#reply-root-form')[0])
+                var reply_id = $(this).parent().parent().attr("reply-id")
+                console.log(reply_id)
+                form.append("father_id", reply_id)
+                {#form.append("article_id",{{ article.id }})#}
+                var val = $(this).parent().children('textarea').val()
+                if (!val.trim()) {
+                    alert("回复不能为空")
+                    return false
+                }
+                form.append("content", val)
+                {#form.append("father_id",reply_id)#}
+
+                $.ajax({
+                    url: "",
+                    type: "POST",
+                    data: form,
+                    processData: false,  // 不处理数据
+                    contentType: false,   // 不设置内容类型
+                    success: function (data, status, xhr) {
+
+                        {% if request.user.is_authenticated %}
+                            var href = location.href
+                        {% else %}
+                            var href = "{% url "login" %}"
+                        {% endif %}
+
+                        console.log(xhr.getAllResponseHeaders())
+                        console.log(status)
+                        {#console.log(data)#}
+                        location.href = href
+                    },
+                    error: function (xhr, status, err) {
+                        console.log(xhr.getAllResponseHeaders())
+                        console.log(status)
+                        console.log(err)
+
+                    }
+                })
+            })
+        }
+
+        $(
+            function () {
+                compile()
+                addDetailEvent()
+            }
+        )
+    </script>
+    <script>
+        function initHighlightingOnLoad() {
+            addEventListener('DOMContentLoaded', initHighlighting, false);
+            addEventListener('load', initHighlighting, false);
+        }
+
+        hljs.initHighlightingOnLoad()
+    </script>
+
+
+{% endblock %}

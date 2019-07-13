@@ -1,0 +1,363 @@
+{% load static %}
+{% load sass_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="{% static 'ANTblog/css/init.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'swiper/css/swiper.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'ANTblog/css/common.sass' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'ANTblog/css/index.sass' %}" type="text/css">
+    <script src="{% static 'swiper/js/swiper.min.js' %}"></script>
+    <script src="{% static 'ANTblog/js/jquery.js' %}"></script>
+</head>
+<body>
+<div class="header-fixed">
+    <div class="header">
+
+        <div class="left">
+            <ul>
+                <li class="active"><i class="fa fa-home" aria-hidden="true"></i>首页1</li>
+                <li><i class="fa fa-home" aria-hidden="true"></i>首页1</li>
+                <li>首页2</li>
+                <li>首页3</li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul>
+                <li><i class="fa fa-sign-in" aria-hidden="true"></i>登陆</li>
+                <li class="register"><i class="fa fa-registered" aria-hidden="true"></i>注册</li>
+                <li><i class="fa fa-search" aria-hidden="true"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="left">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url({% static 'ANTblog/images/1.jpg' %})"></div>
+                <div class="swiper-slide" style="background-image:url({% static 'ANTblog/images/2.jpg' %})"></div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+        </div>
+
+        <div class="hot-rank">
+            <dl>
+                <dt>
+                    热门文章
+                </dt>
+                <dd>
+                    <div class="hot-post">
+                        <div class="post">
+                            <span class="hot-post-first">
+                                1
+                            </span>python元类分析
+                        </div>
+                        <div class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            11111
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="hot-post">
+                        <div class="post">
+                            <span class="hot-post-sec">
+                                2
+                            </span>python元类分析
+                        </div>
+                        <div class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            11111
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="hot-post">
+                        <div class="post">
+                            <span class="hot-post-thr">
+                                3
+                            </span>python元类分析
+                        </div>
+                        <div class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            11111
+                        </div>
+                    </div>
+                </dd>
+                <dd>
+                    <div class="hot-post">
+                        <div class="post">
+                            <span class="hot-post-other">
+                                4
+                            </span>python元类分析
+                        </div>
+                        <div class="like">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            11111
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="article">
+            <div class="article-header">
+                <div class="tag">
+                    Python
+                </div>
+                <div class="title">
+                    Python原型编程
+                </div>
+            </div>
+            <div class="article-content">
+                <div class="image">
+                    <img src="{% static 'ANTblog/images/header.jpg' %}" alt=""/>
+                </div>
+                <div class="text">
+                    这是一些测试文字。。。
+                </div>
+            </div>
+            <div class="article-foot">
+                <div class="author">
+                    ANT锟
+                </div>
+                <div class="datetime">
+                    2019-06-26 22:52
+                </div>
+                <div class="look">
+                    992
+                </div>
+                <div class="comment">
+                    192
+                </div>
+                <div class="like">
+                    12345
+                </div>
+            </div>
+        </div>
+        <div class="article">
+            <div class="article-header">
+                <div class="tag">
+                    Python
+                </div>
+                <div class="title">
+                    Python原型编程
+                </div>
+            </div>
+            <div class="article-content">
+                <div class="image">
+                    <img src="{% static 'ANTblog/images/header.jpg' %}" alt=""/>
+                </div>
+                <div class="text">
+                    这是一些测试文字。。。
+                </div>
+            </div>
+            <div class="article-foot">
+                <div class="author">
+                    ANT锟
+                </div>
+                <div class="datetime">
+                    2019-06-26 22:52
+                </div>
+                <div class="look">
+                    992
+                </div>
+                <div class="comment">
+                    192
+                </div>
+                <div class="like">
+                    12345
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div>下一页</div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="author">
+            <div class="header-img">
+                <img src="{% static 'ANTblog/images/header.jpg' %}" alt="">
+            </div>
+            <div class="name">
+                ANT锟
+            </div>
+            <div class="desc">
+                欢迎大家来到我的博客
+            </div>
+        </div>
+
+        <div class="guess-like">
+            <div class="title">
+                猜你喜欢
+            </div>
+            <div class="guess-article">
+                <div class="image">
+                    <img src="{% static 'ANTblog/images/header.jpg' %}" alt="">
+                </div>
+                <div class="guess-artice-content">
+                    <div class="guess-artice-title">
+                        jaslkdjlaksdj
+                    </div>
+                    <div class="guess-artice-info">
+                        <span class="guess-artice-date">
+                            12364566
+                        </span>
+                        <span class="guess-artice-comment">
+                            111
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="guess-article">
+                <div class="image">
+                    <img src="{% static 'ANTblog/images/header.jpg' %}" alt="">
+                </div>
+                <div class="guess-artice-content">
+                    <div class="guess-artice-title">
+                        jaslkdjlaksdj
+                    </div>
+                    <div class="guess-artice-info">
+                        <span class="guess-artice-date">
+                            12364566
+                        </span>
+                        <span class="guess-artice-comment">
+                            111
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="tag">
+            <div class="title">
+                全部标签
+            </div>
+            <div class="tag-content">
+                <div class="col">
+                    <div class="first">
+                        11235
+                    </div>
+                    <div class="sec">
+                        11235
+                    </div>
+                    <div class="thrid">
+                        11235
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="thrid">
+                        11235
+                    </div>
+                    <div class="sec">
+                        11235
+                    </div>
+                    <div class="first">
+                        11235
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="sec">
+                        11235
+                    </div>
+                    <div class="thrid">
+                        11235
+                    </div>
+                    <div class="first">
+                        11235
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tag">
+            <div class="title">
+                归档
+            </div>
+            <div class="tag-content">
+                <div class="col">
+                    <div>
+                        11235
+                    </div>
+                    <div>
+                        11235
+                    </div>
+                    <div>
+                        11235
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        11235
+                    </div>
+                    <div>
+                        11235
+                    </div>
+                    <div>
+                        11235
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        11235
+                    </div>
+                    <div>
+                        11235
+                    </div>
+                    <div>
+                        11235
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="info">
+        本博客引用 ANT锟 博客
+    </div>
+</div>
+
+<div class="rocket">
+    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+</div>
+<script>
+    window.onload = function () {
+        new Swiper('.swiper-container', {
+            // direction: 'vertical', // 垂直切换选项
+            loop: true, // 循环模式选项
+            effect: 'flip',
+            grabCursor: true,
+            autoplay: true,
+            speed: 1000,
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+        })
+    }
+</script>
+</body>
+
+</html>

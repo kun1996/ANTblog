@@ -1,0 +1,36 @@
+{% extends 'ANTblog/base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block body %}
+    {% include 'ANTblog/header.html' %}
+    {% include 'ANTblog/content.html' %}
+
+    {% include 'ANTblog/footer.html' %}
+    {% include 'ANTblog/rocket.html' %}
+    <script>
+    window.onload = function () {
+        new Swiper('.swiper-container', {
+            // direction: 'vertical', // 垂直切换选项
+            loop: true, // 循环模式选项
+            effect: 'flip',
+            grabCursor: true,
+            autoplay: true,
+            speed: 1000,
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+        })
+    }
+</script>
+{% endblock %}

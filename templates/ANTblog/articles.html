@@ -1,0 +1,135 @@
+{% load static %}
+{% for art in article %}
+    <a href="{{ art.get_absolute_url }}">
+        <div class="article">
+            <div class="article-header">
+                <div class="tag">
+                    {{ art.tag.first.name }}
+                </div>
+                <div class="title">
+                    {{ art.title }}
+                </div>
+            </div>
+            <div class="article-content">
+                <div class="image">
+                    <img src="{% get_media_prefix %}{{ art.image }}" alt=""/>
+                </div>
+                <div class="text">
+                    {{ art.desc|slice:":335"|add:"..." }}
+                </div>
+            </div>
+            <div class="article-foot">
+                <div class="author">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> {{ art.author }}
+                </div>
+                <div class="datetime">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> {{ art.push_datetime|date:"Y-m-d H:i:s" }}
+                </div>
+                <div class="look">
+                    <i class="fa fa-eye" aria-hidden="true"></i> {{ art.look_num }}
+                </div>
+                <div class="comment">
+                    <i class="fa fa-commenting" aria-hidden="true"></i> {{ art.comment_num }}
+                </div>
+                <div class="like">
+                    <i class="fa fa-heart" aria-hidden="true"></i> {{ art.like_num }}
+                </div>
+            </div>
+        </div>
+    </a>
+{% endfor %}
+
+<div class="page">
+    <div onclick="nextPage()">下一页</div>
+</div>
+<script>
+    var PAGENUM = 2
+    var NEXTPAGE_FLAG = true
+
+    function appendArticle(data, tag) {
+        console.log(tag)
+        var articleTag = tag[data.fields.tag[0]].name || '未知'
+        // for (let i = 0; i < tag.length; i++) {
+        //     if (tag[i].pk == data.fields.tag[0]) {
+        //         articleTag = tag[i].fields.name
+        //     }
+        // }
+
+        var h = `
+                <a href="/detail/${ data.pk }.html">
+        <div class="article">
+            <div class="article-header">
+                <div class="tag">
+                    ${ articleTag }
+                </div>
+                <div class="title">
+                    ${ data.fields.title }
+                </div>
+            </div>
+            <div class="article-content">
+                <div class="image">
+                    <img src="{% get_media_prefix %}${ data.fields.image }" alt=""/>
+                </div>
+                <div class="text">
+                    ${ data.fields.desc.slice(0, 335)}...
+                </div>
+            </div>
+            <div class="article-foot">
+                <div class="author">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> ${ data.fields.author }
+                </div>
+                <div class="datetime">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> ${ data.fields.push_datetime.replace('T', ' ').slice(0, -4) }
+                </div>
+                <div class="look">
+                    <i class="fa fa-eye" aria-hidden="true"></i> ${ data.fields.look_num }
+                </div>
+                <div class="comment">
+                    <i class="fa fa-commenting" aria-hidden="true"></i> ${ data.fields.comment_num }
+                </div>
+                <div class="like">
+                    <i class="fa fa-heart" aria-hidden="true"></i> ${ data.fields.like_num }
+                </div>
+            </div>
+        </div>
+    </a>
+        `
+        $(h).insertAfter($('.left>a').last())
+
+    }
+
+    function nextPage() {
+        if (!NEXTPAGE_FLAG) {
+            alert("已经到底啦")
+            return
+        }
+
+
+        $.get('{% url "article" %}?page=' + PAGENUM, {"path":location.pathname},
+            function (data) {
+                console.log(data)
+                if (data.now_page < PAGENUM) {
+                    alert("已经到底啦")
+                } else {
+                    PAGENUM += 1
+                    var article = JSON.parse(data.article)
+                    var tag = JSON.parse(data.tag)
+
+                    var articleTag = {}
+                    for (let i = 0; i < tag.length; i++) {
+                        articleTag[tag[i].pk] = tag[i].fields
+                    }
+
+                    for (let i = 0; i < article.length; i++) {
+                        appendArticle(article[i], articleTag)
+                    }
+
+                    return
+                }
+                NEXTPAGE_FLAG = data.has_next
+
+            }
+        )
+    }
+
+</script>

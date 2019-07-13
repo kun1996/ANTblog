@@ -1,0 +1,10 @@
+<div class="rocket" onclick="rollup()">
+    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+</div>
+
+<script>
+    function rollup() {
+        var speed = 1000; //滑动的速度
+        $('body,html').animate({ scrollTop: 0 }, speed);
+    }
+</script>

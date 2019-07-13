@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <style>
+        .form {
+            width: 250px;
+            margin: 150px auto;
+            box-shadow: 1px 1px 3px gray;
+            padding: 10px;
+        }
+        .title {
+            text-align: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid gray;
+            margin-bottom: 5px;
+        }
+        .button {
+            margin-top: 5px;
+            text-align: right;
+        }
+        .errorlist {
+            color: rgba(218, 0, 0, 0.79);
+        }
+        li {
+            list-style:none;
+        }
+    </style>
+</head>
+<body>
+<div class="form" >
+    <div class="title">登陆</div>
+    <form method='post' novalidate="true">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table}}
+        </table>
+
+        <div class="button">
+            <input type="submit" value="登陆" />
+            <a href="{% url 'forget_pwd' %}">
+                忘记密码
+            </a>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

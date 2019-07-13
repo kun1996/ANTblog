@@ -1,0 +1,34 @@
+{% load static %}
+{% load sass_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'ANTblog/css/init.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'swiper/css/swiper.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'ANTblog/css/common.sass' %}" type="text/css">
+    <link rel="stylesheet" href="{% sass_src 'ANTblog/css/index.sass' %}" type="text/css">
+
+    {% block css %}{% endblock %}
+
+    <script src="{% static 'swiper/js/swiper.min.js' %}"></script>
+    <script src="{% static 'ANTblog/js/jquery.js' %}"></script>
+</head>
+<body>
+{% block body %}
+{% endblock %}
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>忘了密码</title>
+    <style>
+        .form {
+            width: 250px;
+            margin: 150px auto;
+            box-shadow: 1px 1px 3px gray;
+            padding: 10px;
+        }
+        .title {
+            text-align: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid gray;
+            margin-bottom: 5px;
+        }
+        .button {
+            margin-top: 5px;
+            text-align: right;
+        }
+        .errorlist {
+            color: rgba(218, 0, 0, 0.79);
+        }
+        li {
+            list-style:none;
+        }
+    </style>
+    <script src="{% static 'ANTblog/js/jquery.js' %}"></script>
+</head>
+<body>
+<div class="form" >
+    <div class="title">修改密码</div>
+    <form method='post' novalidate="true">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table}}
+        </table>
+
+        <div class="button">
+            <input type="button" onclick="get_code()" value="获取验证码"></input>
+            <input type="submit" value="提交" />
+        </div>
+
+    </form>
+</div>
+<script>
+    function get_code() {
+        var email = $('#id_email').val()
+        if (email) {
+            $.get('{% url "code" %}?email=' + email,function (data) {
+                alert(data.msg)
+                console.log(data.msg)
+            })
+        } else {
+            alert("邮箱不能为空")
+        }
+
+    }
+</script>
+</body>
+</html>

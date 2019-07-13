@@ -1,0 +1,119 @@
+<div class="header-fixed">
+    <div class="header">
+
+        <div class="left">
+            <ul>
+                <a href="/">
+                    <li class="">
+                        <i class="fa fa-home" aria-hidden="true"></i>首页
+                    </li>
+                </a>
+                {% for m in menu %}
+                    <a class="menu" href="{% url 'category' m.path_name %}">
+                        <li class="">
+                            {{ m.icon|default_if_none:''|safe }}{{ m.name }}
+                        </li>
+                        <div class="child-menu">
+
+                        </div>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+        {{ menu|json_script:"menuData" }}
+        <script>
+            var menuData = JSON.parse(document.getElementById('menuData').textContent)
+            console.log(menuData)
+            var $menu = $(".child-menu")
+            for (let i=0; i<menuData.length; i++) {
+                if (menuData[i].has_child) {
+                    var father_path = menuData[i].path_name
+                    var $ul = $($menu[i]).html("<ul></ul>").children("ul")
+                    var childs = menuData[i].childs
+                    for (let j=0; j<childs.length; j++) {
+                        $ul.append(`<li path="/category/${father_path}/${childs[j].path_name}/">${childs[j].icon?childs[j].icon:''} ${childs[j].name}</li>`)
+                    }
+
+                }
+            }
+
+
+            function addHeaderHover() {
+                var tid;
+                $('.menu').hover(
+                    function () {
+                        var that = this
+                        tid = setTimeout(function() {
+                            //当触发hover就开始自动在1秒后执行相应代码
+                            $(that).children('.child-menu').fadeIn(500,)
+                        }, 300 )
+                    },
+                    function () {
+                        $(this).children('.child-menu').fadeOut(300,)
+                        clearTimeout(tid)
+                    }
+                )
+            }
+
+            function addHeaderClick() {
+                $('.child-menu>ul>li').on('click',
+                    function (e) {
+                        var url = e.target.getAttribute('path')
+                        location.href = url
+                        return false
+                    }
+                )
+            }
+            function addHeaderActive() {
+                var a_list = $(".left>ul>a")
+
+                if (location.pathname.match("tag")) {
+                    return
+                }
+                for (let i = a_list.length - 1; i >= 0; i--) {
+                    var href = a_list[i].href.replace(location.origin, '')
+                    if (location.pathname.match(href)) {
+                        $(a_list[i]).children("li").addClass("active")
+                        break
+                    }
+                }
+            }
+
+            $(
+                function () {
+                    addHeaderActive()
+                    addHeaderHover()
+                    addHeaderClick()
+                }
+            )
+        </script>
+        <div class="right">
+            <ul>
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{ request.user.username }}
+
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>离开
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>登陆
+                        </a>
+                    </li>
+                    <li class="register">
+                        <a href="{% url 'register' %}">
+                            <i class="fa fa-registered" aria-hidden="true"></i>注册
+                        </a>
+                    </li>
+                {% endif %}
+
+                <li><i class="fa fa-search" aria-hidden="true"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>

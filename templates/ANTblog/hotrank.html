@@ -1,0 +1,36 @@
+{% load static %}
+<div class="hot-rank">
+            <dl>
+                <dt>
+                    热门文章
+                </dt>
+
+                {% for article in hot_article %}
+                    <a href="{{ article.get_absolute_url }}">
+                        <dd>
+                            <div class="hot-post">
+                                <div class="post">
+                                    <span class="
+                                        {% if forloop.counter == 1 %}
+                                            hot-post-first
+                                        {% elif forloop.counter == 2 %}
+                                            hot-post-sec
+                                        {% elif forloop.counter == 3 %}
+                                            hot-post-thr
+                                        {% else %}
+                                            hot-post-other
+                                        {% endif %}
+    ">
+                                        {{ forloop.counter }}
+                                    </span>{{ article.title }}
+                                </div>
+                                <div class="like">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                    {{ article.like_num }}
+                                </div>
+                            </div>
+                        </dd>
+                    </a>
+                {% endfor %}
+            </dl>
+        </div>

@@ -1,0 +1,371 @@
+.header-fixed
+  position: fixed
+  width: 100%
+  top: 0
+  left: 0
+  z-index: 9999
+
+.header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  align-content: center
+  height: 50px
+  font-size: 18px
+  background: linear-gradient(45deg, #051c17 1%, #3ddee0 45%, #021513 97%)
+  color: white
+  font-weight: bold
+  box-shadow: 0 2px 1px #888888
+  a
+    color: white
+    &:hover
+        color: #34c77e
+  .left
+
+    >ul li
+      padding: 16px 0
+      &:hover
+        color: #34c77e
+    .active
+      color: #34c77e
+    >ul>a
+      position: relative
+
+
+    .child-menu
+      display: none
+      background-color: rgba(106, 182, 176, 0.87)
+      position: absolute
+      width: 120px
+      left: 5px
+      top: 34px
+      text-align: center
+      color: white
+      li
+        display: block
+        margin: 0
+        padding: 10px 0
+        &:hover
+          background-color: #474747
+          color: #dd5f4b
+
+  .right
+    li
+      &:hover
+        color: #34c77e
+    .active
+      color: #34c77e
+
+    .register
+      padding: 5px 10px
+      background-color: #2ac5a7
+      border-radius: 15px
+      &:hover
+        color: #ff514c
+
+.swiper-container
+  height: 300px
+
+.swiper-slide
+  background-position: center
+  background-size: cover
+
+.content
+  width: 95%
+  margin: 60px auto 0
+  display: flex
+
+  .left
+    flex: 5
+    margin-right: 10px
+    width: 0
+
+    .hot-rank
+      margin: 10px 0
+      padding: 20px
+      box-shadow: 0 1px 3px #bcbcbc
+      background-color: #f2f2f2
+      font-size: 20px
+      transition: all 1s
+
+      &:hover
+        box-shadow: 0 3px 5px #aaa
+        //margin-bottom: 3px
+
+      dt
+        border-bottom: 1px #ff7f6e solid
+        padding: 0 0 5px 0
+        font-weight: bold
+        color: #80625e
+      dd
+        margin: 5px 0 0 0
+        line-height: 100%
+        font-size: 18px
+        color: #333333
+
+        &:hover
+          background-color: #7bd1ff
+          color: #fff
+
+        .hot-post
+          display: flex
+          justify-content: space-between
+          align-items: center
+          align-content: center
+          .post
+            line-height: 100%
+            .hot-post-first
+              display: inline-block
+              background-color: #ffaf17
+            .hot-post-sec
+              display: inline-block
+              background-color: #ffa37e
+            .hot-post-thr
+              display: inline-block
+              background-color: #fb9cff
+            .hot-post-other
+              display: inline-block
+              background-color: #ccdcff
+          .like
+            color: #f25b89
+        span
+          margin-right: 5px
+          color: #fff
+          padding: 3px 10px
+
+    .article
+      margin-bottom: 10px
+      padding: 20px
+      box-shadow: 0 1px 3px #bcbcbc
+      background-color: #f2f2f2
+      font-size: 20px
+      transition: all 1s
+
+      &:hover
+        box-shadow: 0 3px 5px #aaa
+        //margin-top: 3px
+
+        img
+          transform: scale(1.1)
+
+      .article-header
+        border-bottom: 1px #ff7f6e solid
+        padding-bottom: 10px
+        line-height: 100%
+
+        div
+          display: inline-block
+
+        .tag
+          background-color: red
+          padding: 0 8px
+          color: #ffffff
+          font-size: 16px
+          font-weight: bold
+          border-radius: 2px 10px 10px 2px
+          margin-right: 5px
+
+        .title
+          color: #333
+          &:hover
+            color: rgba(85, 93, 181, 0.91)
+            font-weight: bold
+
+      .article-content
+        display: flex
+        margin-top: 10px
+        .image
+          flex: 1
+          width: 0
+          height: 140px
+          overflow: hidden
+          img
+            height: 140px
+            width: 100%
+            transition: all 1s
+        .text
+          font-size: 16px
+          flex: 3
+          width: 0
+          text-indent: 2em
+
+      .article-foot
+        display: flex
+        justify-content: flex-end
+        font-size: 14px
+        color: gray
+        div
+          margin-left: 10px
+    .page
+      margin-top: 10px
+      text-align: center
+      background-color: #1bac21
+      padding: 5px
+      color: #ffffff
+      font-weight: bold
+      font-size: 18px
+      &:hover
+        background-color: #7fd295
+        color: #8d8d8d
+
+  .right
+    flex: 2
+    width: 0
+
+    .author
+      box-shadow: 0 1px 3px #bcbcbc
+      background-color: #f2f2f2
+      transition: box-shadow 2s
+      padding: 10px
+
+      &:hover
+        box-shadow: 0 3px 5px #aaa
+
+      .header-img
+        text-align: center
+        padding: 5px 0
+
+        img
+          width: 80px
+          height: 80px
+          border-radius: 50%
+
+      .name
+        text-align: center
+        font-size: 20px
+
+      .desc
+        padding-top: 5px
+        text-indent: 2em
+
+    .guess-like
+      margin-top: 10px
+      box-shadow: 0 1px 3px #bcbcbc
+      background-color: #f2f2f2
+      transition: box-shadow 2s
+      padding: 10px
+
+      &:hover
+        box-shadow: 0 3px 5px #aaa
+
+      .title
+        padding-bottom: 10px
+        border-bottom: 1px #ff7f6e solid
+        line-height: 100%
+        font-size: 18px
+        font-weight: bold
+        color: #80625e
+
+      .guess-article
+        display: flex
+        padding-bottom: 10px
+        padding-top: 10px
+
+        border-bottom: 1px #adadad solid
+        color: #333
+
+        &:hover
+          color: #ff7f6e
+          img
+            transform: scale(1.1)
+
+        .image
+          flex: 1
+          overflow: hidden
+          img
+            margin: 0 10px 0 0
+            height: 80px
+            width: 100%
+            transition: all 1s
+
+
+        .guess-artice-content
+          flex: 2
+          display: flex
+          flex-direction: column
+        .guess-artice-title
+          font-size: 18px
+          font-weight: bold
+          flex: 2
+          margin-left: 10px
+
+
+        .guess-artice-info
+          flex: 1
+          font-weight: bold
+          font-size: 16px
+          text-align: right
+          .guess-artice-date
+            margin-right: 10px
+
+      .guess-article-last
+        padding-bottom: 0
+        border-bottom: 0 #adadad solid
+    .tag
+      box-shadow: 0 1px 3px #bcbcbc
+      transition: box-shadow 2s
+      padding: 10px
+      margin-top: 10px
+      background-color: #f2f2f2
+      font-weight: bold
+      color: #f2f2f2
+
+      &:hover
+        box-shadow: 0 3px 5px #aaa
+
+      .title
+        padding-bottom: 10px
+        border-bottom: 1px #ff7f6e solid
+        line-height: 100%
+        font-size: 18px
+        font-weight: bold
+        color: #80625e
+
+      .tag-content
+        text-align: center
+        display: flex
+        justify-content: space-between
+        .col
+          flex: 1
+          width: 0
+          &:first-child
+            margin: 0 0 0 -5px
+
+          &:last-child
+            margin: 0 -5px 0 0
+          div
+            padding: 5px 10px
+            background-color: red
+            margin: 5px
+            line-height: 100%
+            &:hover
+              color: #fff
+              font-weight: bold
+
+          .first
+            background-color: rgb(27, 172, 33)
+          .sec
+            background-color: #1ee6ff
+          .thrid
+            background-color: #ff14a4
+
+
+.footer
+  padding: 16px 20px 14px
+  margin: 10px auto 0
+  color: #aaa
+  box-shadow: 0 -3px 3px #9e9ea5
+  text-align: center
+  background-color: #333333
+
+.rocket
+  width: 50px
+  height: 50px
+  font-size: 45px
+  color: #1bac21
+  position: fixed
+  right: 20px
+  bottom: 50px
+  &:hover
+    color: #38babc
+

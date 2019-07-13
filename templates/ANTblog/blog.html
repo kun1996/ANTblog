@@ -1,0 +1,16 @@
+{% extends 'ANTblog/base.html' %}
+
+{% block body %}
+    {% include 'ANTblog/header.html' %}
+    <div class="content">
+        <div class="left">
+            {% include 'ANTblog/articles.html' %}
+        </div>
+        <div class="right">
+            {% include 'ANTblog/right.html' %}
+        </div>
+    </div>
+
+    {% include 'ANTblog/footer.html' %}
+    {% include 'ANTblog/rocket.html' %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {% for banner in index_banner %}
+            <div class="swiper-slide">
+                <a href="{{ banner.article.get_absolute_url }}">
+                    <img src="{% get_media_prefix %}{{ banner.image }}" style="width: 100%;height: 100%" alt=""/>
+                </a>
+            </div>
+        {% endfor %}
+
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+</div>
