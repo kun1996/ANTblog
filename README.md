@@ -9,7 +9,8 @@ git clone https://github.com/kun1996/ANTblog.git
 二:创建虚拟环境
 ```bash
 pip3 install virtualenv
-virtualenv --no-site-packages venv
+
+virtualenv --no-site-packages venv # 如果你的环境有2.7的python可以加--python=python3参数指定python版本
 source venv/bin/activate
 ```
 三:下载环境依赖
