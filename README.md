@@ -15,7 +15,7 @@ source venv/bin/activate
 ```
 三:下载环境依赖
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt # 如果下载速度太慢，可以在后面加上 -i https://pypi.doubanio.com/simple/
 ```
 四:添加邮箱配置文件
 ```python
