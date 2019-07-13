@@ -1,5 +1,8 @@
 # Django 博客 - Python
 
+### 在线实例
+http://134.175.39.46/
+
 ### 安装步骤
 
 一:将本项目clone到你的本地
@@ -15,6 +18,7 @@ source venv/bin/activate
 ```
 三:下载环境依赖
 ```bash
+cd ANTblog
 pip install -r requirements.txt # 如果下载速度太慢，可以在后面加上 -i https://pypi.doubanio.com/simple/
 ```
 四:添加邮箱配置文件
