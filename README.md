@@ -26,6 +26,15 @@ EMAIL_HOST_PASSWORD = "你的邮箱的授权密码（不是登陆密码）"  # #
 ```bash
 python manage.py runserver
 # 如果你出现了django.core.exceptions.ImproperlyConfigured: SQLite 3.8.3 or later is required (found 3.7.17).错误
-# 请更新sqlite版本
+# 请更新sqlite版本，可以参考https://www.jianshu.com/p/cdacf4b74646
 ```
+### 注意
+因为自带了sqlite3,所以可以直接使用，如需更换mysql则自行更换
+管理员账号ent
+管理员密码123456
+这只是测试用的，如需自己使用，记得重新生成sqlite3或者其他数据库
+
+### 配置
+待更新
+
 
