@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ```
 四:添加邮箱配置文件
 ```python
-# ANTblog/conf.py 即在app目录下，与views.py同级
+# ANTblog/conf.py 即在app目录下，与views.py同级 找回密码
 EMAIL_HOST_USER = "你的邮箱"  # 发送邮件的邮箱
 EMAIL_HOST_PASSWORD = "你的邮箱的授权密码（不是登陆密码）"  # #邮箱的授权密码
 ```
@@ -38,7 +38,19 @@ python manage.py runserver
 这只是测试用的，如需自己使用，记得重新生成sqlite3或者其他数据库
 
 ### 配置
-待更新
+```python
+# blog/setting.py
+
+# ANTblog使用 显示个人的一些简介 右边栏的个人简介
+AUTHOR_NAME = 'ANT锟'
+AUTHOR_IMG = "/media/article/image/timg.jpg"
+AUTHOR_DESC = "欢迎大家来到我的博客,我是来自南京的一枚全栈小码农."
+
+# 分页
+PAGE_NUM = 10 # 文章每页数目
+RIGHT_LIKE_NUM = 5 # 猜你喜欢数目
+INDEX_HOT_NUM = 5 # 首页热门文章数目
+```
 
 ### 计划
 搜索功能的实现
