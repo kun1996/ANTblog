@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "C:/Users/ent/Desktop/blog/static/ANTblog/css/common.css",
+	"sources": [
+		"C:/Users/ent/Desktop/blog/static/ANTblog/css/common.sass"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,IAAI,CAAC;EACH,gBAAgB,EAAE,IAAI,GAAG;;AAC3B,AAAA,EAAE,CAAC;EACD,OAAO,EAAE,YAAY;EACrB,MAAM,EAAE,MAAM;EACd,WAAW,EAAE,IAAI,GAAG"
+}

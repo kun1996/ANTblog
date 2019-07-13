@@ -1,7 +1,5 @@
 # Editor directories and files
 .idea
-ANTblog/css/
 ANTblog/migrations/
 ANTblog/conf.py
-media/ANTblog/css
 venv/
