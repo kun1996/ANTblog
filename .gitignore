@@ -1,5 +1,4 @@
 # Editor directories and files
 .idea
-ANTblog/migrations/
 ANTblog/conf.py
 venv/

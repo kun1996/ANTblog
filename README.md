@@ -42,6 +42,7 @@ python manage.py runserver
 
 ### 计划
 搜索功能的实现
+
 后台管理的实现（目前使用的是django的admin）
 
 ### 交流
