@@ -19,7 +19,7 @@ pip install -r requirements.txt # 如果下载速度太慢，可以在后面加�
 ```
 四:添加邮箱配置文件
 ```python
-# ANTblog/conf.py 即在app目录下，与views.py同级 找回密码
+# ANTblog/conf.py 即在app目录下，与views.py同级,需要自己创建 找回密码
 EMAIL_HOST_USER = "你的邮箱"  # 发送邮件的邮箱
 EMAIL_HOST_PASSWORD = "你的邮箱的授权密码（不是登陆密码）"  # #邮箱的授权密码
 ```
