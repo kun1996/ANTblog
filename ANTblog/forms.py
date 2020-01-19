@@ -87,6 +87,7 @@ class RegisterForm(forms.Form):
         return self.cleaned_data
 
     def _post_clean(self):
+        if self._errors: return
         username = self.cleaned_data['username']
         pwd = self.cleaned_data['password']
         email = self.cleaned_data['email']
@@ -169,6 +170,7 @@ class ChangePwdForm(forms.Form):
         return self.cleaned_data
 
     def _post_clean(self):
+        if self._errors: return
         User.objects.filter(email=self.cleaned_data['email']).update(
             password=make_password(self.cleaned_data['password']))
 
@@ -277,4 +279,5 @@ class ReplyForm(forms.Form):
     )
 
     def _post_clean(self):
+        if self._errors: return
         Reply.objects.create(user=self.user, **self.cleaned_data)
